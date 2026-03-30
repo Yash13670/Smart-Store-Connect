@@ -3,14 +3,19 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Dashboard from "@/pages/dashboard";
+import InventoryPage from "@/pages/inventory";
+import PredictionsPage from "@/pages/predictions";
+import WalletPage from "@/pages/wallet";
+import AlertsPage from "@/pages/alerts";
+import SettingsPage from "@/pages/settings";
 import NotFound from "@/pages/not-found";
 
-// Initialize the query client for data fetching
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
-      staleTime: 1000 * 60 * 5, // 5 minutes
+      refetchOnWindowFocus: true,
+      staleTime: 5000,
+      refetchInterval: 10000,
     },
   },
 });
@@ -19,7 +24,11 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Dashboard} />
-      {/* Catch-all route maps to 404 */}
+      <Route path="/inventory" component={InventoryPage} />
+      <Route path="/predictions" component={PredictionsPage} />
+      <Route path="/wallet" component={WalletPage} />
+      <Route path="/alerts" component={AlertsPage} />
+      <Route path="/settings" component={SettingsPage} />
       <Route component={NotFound} />
     </Switch>
   );
