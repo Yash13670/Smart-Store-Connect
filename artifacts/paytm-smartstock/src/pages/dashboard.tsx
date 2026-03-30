@@ -3,13 +3,16 @@ import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 import { InventoryCard } from "@/components/dashboard/inventory-card";
 import { AiPredictions } from "@/components/dashboard/ai-predictions";
+import { AiInsightBanner } from "@/components/dashboard/ai-insight-banner";
+import { AiDemandChart } from "@/components/dashboard/ai-demand-chart";
 import { TransactionSimulator } from "@/components/dashboard/transaction-simulator";
 import { SalesChart } from "@/components/dashboard/sales-chart";
 import { SmartAlertModal } from "@/components/dashboard/smart-alert-modal";
-import { useGetInventory, StockAlert } from "@workspace/api-client-react";
+import { useGetInventory, GetPredictionsDayType } from "@workspace/api-client-react";
 import { useSmartAlert } from "@/hooks/use-smart-alert";
 
 export default function Dashboard() {
+  const [dayType, setDayType] = useState<GetPredictionsDayType>(GetPredictionsDayType.normal);
   const { data: inventory, isLoading: inventoryLoading } = useGetInventory();
   const { activeAlert, triggerAlert, dismissAlert } = useSmartAlert();
 
@@ -35,6 +38,11 @@ export default function Dashboard() {
                     <p className="text-sm text-muted-foreground">Real-time stock levels across your shop</p>
                   </div>
                 </div>
+
+                {/* AI Insight Banner — dynamic based on dayType */}
+                <div className="mb-4">
+                  <AiInsightBanner dayType={dayType} setDayType={setDayType} />
+                </div>
                 
                 {inventoryLoading ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -49,7 +57,7 @@ export default function Dashboard() {
                 )}
               </section>
 
-              {/* AI Prediction Section */}
+              {/* AI Demand Forecast Chart — full-width, prominent */}
               <section>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex items-center gap-2">
@@ -60,10 +68,15 @@ export default function Dashboard() {
                   </div>
                   <div className="flex-1 h-px bg-gradient-to-r from-[#00baf2]/30 to-transparent" />
                 </div>
-                <AiPredictions />
+                <AiDemandChart dayType={dayType} />
               </section>
 
-              {/* Chart Section */}
+              {/* Per-Product Breakdown Cards */}
+              <section>
+                <AiPredictions dayType={dayType} />
+              </section>
+
+              {/* Historical Sales Chart */}
               <section>
                 <SalesChart />
               </section>

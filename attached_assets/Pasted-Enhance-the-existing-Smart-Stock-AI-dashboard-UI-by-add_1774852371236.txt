@@ -1,0 +1,90 @@
+Enhance the existing **Smart-Stock AI dashboard UI** by adding the following **two final premium improvements**.
+
+Do NOT change the current layout, colors, or sidebar structure.
+Only add these new sections in a polished and professional way.
+
+---
+
+## 1. Add AI Demand Forecast Section Below Inventory
+
+Below the current **Live Inventory cards section**, add a full-width premium analytics section titled:
+
+**AI Demand Forecast**
+
+This section should be visually prominent and placed directly below the inventory cards.
+
+### Include:
+
+* large smooth line chart
+* historical sales trend
+* dotted line for tomorrow’s prediction
+* product tabs:
+
+  * Milk
+  * Bread
+  * Biscuits
+  * Tea
+* condition toggle:
+
+  * Normal Day
+  * Rainy Day
+  * Festival Day
+
+Use **Chart.js** for the graph.
+
+The graph should display:
+
+* last 5 days sales
+* predicted tomorrow demand
+
+Use a clean blue line with light area fill and a dotted purple prediction line.
+
+Make the chart card slightly larger with:
+
+* rounded corners
+* soft shadow
+* light blue tint background
+* good padding
+
+This section should clearly look like the **AI intelligence layer of the platform**.
+
+---
+
+## 2. Add Smart AI Insight Banner
+
+Above the inventory cards and below the **Live Inventory heading**, add a slim highlighted banner.
+
+Example text:
+**AI Insight:**
+“Tea demand is expected to rise by 25% tomorrow due to rainy weather conditions.”
+
+The text should update dynamically based on selected mode:
+
+* Normal
+* Rainy
+* Festival
+
+Examples:
+
+* Rainy → Tea / Milk increase
+* Festival → Bread / Biscuits increase
+
+Design:
+
+* horizontal card banner
+* light blue background
+* left-side AI icon
+* subtle border glow
+* professional fintech style
+
+This banner should feel like a real-time AI recommendation engine.
+
+---
+
+## Goal
+
+The final dashboard should clearly show:
+
+AI insight → stock status → forecast → reorder action
+
+This should look like a premium Paytm business intelligence product for hackathon demo.
