@@ -1,22 +1,26 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Paytm Smart-Stock AI API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: inventory
+    description: Inventory management
+  - name: transactions
+    description: Transaction operations
+  - name: predictions
+    description: AI demand predictions
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,6 +28,134 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /inventory:
+    get:
+      operationId: getInventory
+      tags: [inventory]
+      summary: Get all product inventory
+      responses:
+        "200":
+          description: Inventory list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/InventoryItem"
+
+  /inventory/{productId}:
+    patch:
+      operationId: updateInventory
+      tags: [inventory]
+      summary: Update stock for a product
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateInventoryRequest"
+      responses:
+        "200":
+          description: Updated inventory item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InventoryItem"
+
+  /transactions:
+    get:
+      operationId: getTransactions
+      tags: [transactions]
+      summary: Get transaction history
+      responses:
+        "200":
+          description: Transaction list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Transaction"
+    post:
+      operationId: createTransaction
+      tags: [transactions]
+      summary: Create a new sale transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTransactionRequest"
+      responses:
+        "201":
+          description: Transaction created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionResult"
+
+  /predictions:
+    get:
+      operationId: getPredictions
+      tags: [predictions]
+      summary: Get AI demand predictions for all products
+      parameters:
+        - name: dayType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [normal, rainy, festival]
+            default: normal
+      responses:
+        "200":
+          description: Prediction results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Prediction"
+
+  /wallet:
+    get:
+      operationId: getWallet
+      tags: [inventory]
+      summary: Get wallet balance
+      responses:
+        "200":
+          description: Wallet info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Wallet"
+
+  /wallet/loan:
+    post:
+      operationId: approveLoan
+      tags: [inventory]
+      summary: Approve an instant inventory loan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoanRequest"
+      responses:
+        "200":
+          description: Loan approved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Wallet"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +166,154 @@ components:
       required:
         - status
 
+    InventoryItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        currentStock:
+          type: integer
+        reorderThreshold:
+          type: integer
+        maxStock:
+          type: integer
+        price:
+          type: number
+        unit:
+          type: string
+        status:
+          type: string
+          enum: [safe, low, critical]
+      required:
+        - id
+        - name
+        - currentStock
+        - reorderThreshold
+        - maxStock
+        - price
+        - unit
+        - status
+
+    UpdateInventoryRequest:
+      type: object
+      properties:
+        stock:
+          type: integer
+      required:
+        - stock
+
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+        productId:
+          type: string
+        productName:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: number
+        total:
+          type: number
+        timestamp:
+          type: string
+      required:
+        - id
+        - productId
+        - productName
+        - quantity
+        - price
+        - total
+        - timestamp
+
+    CreateTransactionRequest:
+      type: object
+      properties:
+        productId:
+          type: string
+        quantity:
+          type: integer
+      required:
+        - productId
+        - quantity
+
+    TransactionResult:
+      type: object
+      properties:
+        transaction:
+          $ref: "#/components/schemas/Transaction"
+        updatedInventory:
+          $ref: "#/components/schemas/InventoryItem"
+        alert:
+          $ref: "#/components/schemas/StockAlert"
+      required:
+        - transaction
+        - updatedInventory
+
+    StockAlert:
+      type: object
+      properties:
+        triggered:
+          type: boolean
+        productId:
+          type: string
+        productName:
+          type: string
+        currentStock:
+          type: integer
+        reorderQty:
+          type: integer
+        orderCost:
+          type: number
+        walletBalance:
+          type: number
+        needsLoan:
+          type: boolean
+      required:
+        - triggered
+
+    Prediction:
+      type: object
+      properties:
+        productId:
+          type: string
+        productName:
+          type: string
+        burnRate:
+          type: number
+        predictedDemand:
+          type: number
+        weatherMultiplier:
+          type: number
+        confidence:
+          type: string
+      required:
+        - productId
+        - productName
+        - burnRate
+        - predictedDemand
+        - weatherMultiplier
+        - confidence
+
+    Wallet:
+      type: object
+      properties:
+        balance:
+          type: number
+        currency:
+          type: string
+      required:
+        - balance
+        - currency
+
+    LoanRequest:
+      type: object
+      properties:
+        amount:
+          type: number
+      required:
+        - amount

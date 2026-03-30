@@ -1,0 +1,127 @@
+Build a **full-stack web prototype** called **“Paytm Smart-Stock AI”**, a virtual supply chain manager for small shopkeepers.
+
+The application should simulate how Paytm transaction data can be used to automatically manage inventory, predict low stock, and trigger reorder alerts.
+
+### Core Requirements
+
+Create a clean, modern dashboard-style web app with the following modules:
+
+#### 1. Transaction Simulation Panel
+
+* A button to **simulate a new sale**
+* Dropdown for products:
+
+  * Milk
+  * Bread
+  * Biscuits
+  * Tea
+* Quantity selector
+* Product price auto-filled
+* When a sale is made:
+
+  * transaction is logged with timestamp
+  * stock decreases automatically
+  * sales history updates
+
+#### 2. Live Inventory Dashboard
+
+Show cards for each product with:
+
+* product name
+* current stock
+* reorder threshold
+* predicted demand for next day
+* stock status
+
+  * safe
+  * low stock
+  * critical
+
+Use progress bars and cards for clean UI.
+
+#### 3. AI Prediction Module
+
+Create a simple AI simulation logic using Python backend:
+
+* calculate burn rate based on past transactions
+* estimate next-day demand
+* if stock < threshold, trigger low stock alert
+
+Use a simple forecasting formula for prototype:
+predicted_demand = average sales of last 5 transactions + weather multiplier
+
+#### 4. Weather / Festival Demand Factor
+
+Add a small toggle:
+
+* normal day
+* rainy day
+* festival day
+
+If rainy day:
+increase milk and tea demand prediction
+
+If festival day:
+increase bread and biscuit demand prediction
+
+#### 5. Smart Alert System
+
+When stock becomes low, show:
+
+* popup notification
+* soundbox-style voice alert box
+
+Example text:
+“Low Stock Alert: Only 5 units of Bread left. Reorder now?”
+
+Add Yes / No buttons.
+
+#### 6. WhatsApp Reorder Simulation
+
+If user clicks Yes:
+
+* generate order message
+* show a WhatsApp-style drafted message popup
+
+Example:
+“Hi Distributor, please send 10 units of Bread tomorrow morning.”
+
+#### 7. Financing Simulation
+
+If order cost exceeds available wallet balance:
+show popup:
+“Instant Paytm Inventory Loan available for ₹2000”
+
+Add approve button.
+
+### Tech Stack
+
+Frontend:
+
+* HTML
+* CSS
+* JavaScript
+* responsive modern fintech UI
+* blue / white professional theme
+
+Backend:
+
+* Python Flask
+
+Data:
+
+* use SQLite or in-memory dictionary for stock + transaction logs
+
+### UI Style
+
+Make it look like a modern fintech dashboard:
+
+* card layout
+* clean charts
+* rounded corners
+* professional shadows
+* responsive for laptop and mobile
+
+### Bonus
+
+Add a small chart for daily sales trend using Chart.js.

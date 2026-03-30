@@ -1,0 +1,16 @@
+packages:
+  "recharts": "Data visualization for sales trends"
+  "framer-motion": "Animations for smart alerts and dialogs"
+  "date-fns": "Human-readable date formatting"
+  "clsx": "Utility for conditional Tailwind classes"
+  "tailwind-merge": "Utility for merging Tailwind classes"
+  "lucide-react": "Icons for the dashboard"
+
+images:
+  - path: "artifacts/paytm-smartstock/public/images/logo.png"
+    description: "Modern fintech startup logo icon, abstract blue geometric shapes resembling a digital wallet and analytics chart, transparent background"
+    aspect_ratio: "1:1"
+
+notes:
+  - "Importing all API hooks directly from @workspace/api-client-react as per the workspace setup."
+  - "Using Framer Motion for the multi-step Smart Alert Modal to ensure high-end UX."
