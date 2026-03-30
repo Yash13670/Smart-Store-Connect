@@ -42,13 +42,13 @@ export function Sidebar() {
               className={cn(
                 "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group",
                 isActive
-                  ? "bg-primary/5 text-primary font-semibold"
+                  ? "sidebar-active text-white font-semibold"
                   : "text-muted-foreground hover:bg-muted/50 hover:text-foreground font-medium"
               )}
             >
               <item.icon className={cn(
                 "w-5 h-5 transition-transform duration-200",
-                isActive ? "text-[#00baf2]" : "group-hover:scale-110"
+                isActive ? "text-white" : "group-hover:scale-110"
               )} />
               {item.name}
               {item.name === "Alerts" && (
@@ -60,16 +60,16 @@ export function Sidebar() {
       </nav>
 
       {/* AI Insights panel — links to Predictions page */}
-      <Link href="/predictions" className="block p-4 m-4 rounded-2xl ai-gradient text-white shadow-xl shadow-indigo-500/20 cursor-pointer hover:opacity-90 transition-opacity">
+      <Link href="/predictions" className="block p-4 m-4 rounded-2xl cursor-pointer hover:opacity-90 transition-opacity" style={{ background: "linear-gradient(135deg, #002970 0%, #0057b8 55%, #00baf2 100%)", boxShadow: "0 8px 24px rgba(0,87,184,0.35)" }}>
         <div className="flex items-center gap-2 mb-2">
           <TrendingUp className="w-5 h-5 text-white/90" />
-          <span className="font-display font-bold text-sm">AI Pro Active</span>
-          <span className="ml-auto w-2 h-2 bg-white/60 rounded-full animate-pulse" />
+          <span className="font-display font-bold text-sm text-white">AI Pro Active</span>
+          <span className="ml-auto w-2 h-2 bg-[#00baf2] rounded-full animate-pulse shadow-sm shadow-[#00baf2]/50" />
         </div>
-        <p className="text-xs text-white/80 mb-3 leading-relaxed">
-          Demand forecasts update with weather & festival conditions.
+        <p className="text-xs text-white/75 mb-3 leading-relaxed">
+          Demand forecasts update with weather &amp; festival conditions.
         </p>
-        <div className="w-full py-2 bg-white/20 hover:bg-white/30 rounded-lg text-xs font-semibold backdrop-blur-md transition-colors text-center">
+        <div className="w-full py-2 bg-white/15 hover:bg-white/25 border border-white/20 rounded-lg text-xs font-bold text-white backdrop-blur-md transition-colors text-center tracking-wide">
           View AI Insights →
         </div>
       </Link>

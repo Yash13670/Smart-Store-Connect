@@ -107,7 +107,7 @@ export function TransactionSimulator({ onAlertTriggered }: Props) {
           <button
             type="submit"
             disabled={isPending || !selectedProduct}
-            className="w-full py-3.5 rounded-xl font-semibold paytm-gradient text-white shadow-lg shadow-[#00baf2]/25 hover:shadow-xl hover:shadow-[#00baf2]/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full py-3.5 rounded-xl font-bold paytm-btn text-white disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-[15px] tracking-wide"
           >
             {isPending ? (
               <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</>

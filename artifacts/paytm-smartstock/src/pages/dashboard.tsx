@@ -51,6 +51,15 @@ export default function Dashboard() {
 
               {/* AI Prediction Section */}
               <section>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-display font-bold">AI Intelligence</h2>
+                    <span className="text-[11px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#002970] to-[#00baf2] text-white shadow-sm">
+                      Pro
+                    </span>
+                  </div>
+                  <div className="flex-1 h-px bg-gradient-to-r from-[#00baf2]/30 to-transparent" />
+                </div>
                 <AiPredictions />
               </section>
 

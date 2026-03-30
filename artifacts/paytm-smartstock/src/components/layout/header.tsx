@@ -20,19 +20,19 @@ export function Header() {
 
       <div className="flex items-center gap-4 ml-auto">
         {/* Wallet Balance */}
-        <Link href="/wallet" className="flex items-center gap-3 border-r border-border pr-4 cursor-pointer hover:opacity-80 transition-opacity">
+        <Link href="/wallet" className="flex items-center gap-2.5 border-r border-border pr-4 cursor-pointer group">
           <div className="text-right hidden sm:block">
-            <p className="text-xs text-muted-foreground font-medium mb-0.5">Wallet Balance</p>
+            <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wide mb-0.5">Wallet Balance</p>
             {isLoading ? (
               <div className="h-5 w-20 bg-muted animate-pulse rounded" />
             ) : (
-              <p className="font-display font-bold text-primary">
+              <p className="font-display font-bold text-[#002970] text-lg leading-none group-hover:text-[#0057b8] transition-colors">
                 {formatCurrency(wallet?.balance || 0)}
               </p>
             )}
           </div>
-          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-            <WalletIcon className="text-primary" />
+          <div className="w-10 h-10 rounded-full paytm-btn flex items-center justify-center flex-shrink-0">
+            <WalletIcon className="text-white" />
           </div>
         </Link>
 

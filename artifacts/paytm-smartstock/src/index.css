@@ -73,14 +73,64 @@
     @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
   }
   
+  /* Core Paytm gradient — deep navy to electric blue */
   .paytm-gradient {
-    @apply bg-gradient-to-r from-[#002970] to-[#00baf2];
+    background: linear-gradient(135deg, #002970 0%, #0057b8 60%, #00baf2 100%);
   }
-  
+
+  /* Paytm gradient for buttons — slightly lighter, more vibrant */
+  .paytm-btn {
+    background: linear-gradient(135deg, #003fa3 0%, #0066cc 55%, #00baf2 100%);
+    box-shadow: 0 4px 20px rgba(0, 102, 204, 0.35);
+    transition: all 0.2s ease;
+  }
+  .paytm-btn:hover {
+    box-shadow: 0 6px 28px rgba(0, 102, 204, 0.5);
+    transform: translateY(-1px);
+  }
+  .paytm-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 12px rgba(0, 102, 204, 0.3);
+  }
+
+  /* Active sidebar highlight */
+  .sidebar-active {
+    background: linear-gradient(135deg, #002970 0%, #0057b8 100%);
+    box-shadow: 0 4px 14px rgba(0, 87, 184, 0.3);
+  }
+
+  /* AI Forecast card — premium card treatment */
+  .ai-forecast-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 186, 242, 0.25);
+    border-radius: 1.25rem;
+    box-shadow:
+      0 0 0 1px rgba(0, 186, 242, 0.08),
+      0 4px 6px -1px rgba(0, 41, 112, 0.06),
+      0 16px 40px -4px rgba(0, 41, 112, 0.10),
+      0 0 60px rgba(0, 186, 242, 0.06);
+    overflow: hidden;
+  }
+
+  /* Blue glow shadow for important cards */
+  .paytm-glow {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 41, 112, 0.08),
+      0 12px 32px -4px rgba(0, 102, 204, 0.14),
+      0 0 0 1px rgba(0, 186, 242, 0.12);
+  }
+
+  /* AI section tab — selected state */
+  .ai-tab-active {
+    background: linear-gradient(135deg, #002970 0%, #00baf2 100%);
+    color: white;
+    box-shadow: 0 2px 10px rgba(0, 102, 204, 0.35);
+  }
+
   .ai-gradient {
-    @apply bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500;
+    @apply bg-gradient-to-br from-indigo-600 via-blue-600 to-[#00baf2];
   }
-  
+
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
     height: 6px;
