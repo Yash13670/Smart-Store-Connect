@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "US6DTJyo29pKeW_OM7fS5"
+uri = "file://README.md"
+type = "text"
+title = "Paytm Smart-Stock AI — README"
