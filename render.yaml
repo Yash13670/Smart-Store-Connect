@@ -2,6 +2,7 @@ services:
   - type: web
     name: smart-store-api
     env: node
+    plan: free
     buildCommand: pnpm install && pnpm run build
     startCommand: node artifacts/api-server/dist/index.mjs
     envVars:
@@ -17,6 +18,7 @@ services:
   - type: web
     name: smart-store-frontend
     env: static
+    plan: free
     buildCommand: pnpm install && pnpm --filter @workspace/paytm-smartstock build
     staticPublishPath: artifacts/paytm-smartstock/dist/public
     routes:
