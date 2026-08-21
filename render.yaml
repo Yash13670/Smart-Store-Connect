@@ -1,7 +1,7 @@
 services:
   - type: web
     name: smart-store-api
-    env: node
+    runtime: node
     plan: free
     buildCommand: pnpm install && pnpm run build
     startCommand: node artifacts/api-server/dist/index.mjs
@@ -11,14 +11,13 @@ services:
           name: smart-store-db
           property: connectionString
       - key: PORT
-        value: 10000
+        value: "10000"
       - key: NODE_ENV
         value: production
 
   - type: web
     name: smart-store-frontend
-    env: static
-    plan: free
+    runtime: static
     buildCommand: pnpm install && pnpm --filter @workspace/paytm-smartstock build
     staticPublishPath: artifacts/paytm-smartstock/dist/public
     routes:
